@@ -6,7 +6,6 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import withAuth from "@/firebase/withAuth";
-import Loader from "@/components/Loader";
 
 const maxResult = 4;
 
@@ -72,7 +71,16 @@ const Category = ({ category, products, slug }) => {
           </div>
         )}
         {/* PAGINATION BUTTONS END */}
-        {isLoading && <Loader />}
+        {isLoading && (
+          <div className="absolute top-0 left-0 w-full h-full bg-[#fffafc] flex items-center justify-center">
+            <div className="flex flex-col justify-center items-center">
+              <img className="md:w-64 w-56" src="/loader.gif" alt="" />
+              <p className="text-sm -mt-10 md:text-base font-medium mb-0">
+                LOADING...
+              </p>
+            </div>
+          </div>
+        )}
       </Wrapper>
     </div>
   );
