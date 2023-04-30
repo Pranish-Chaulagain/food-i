@@ -6,6 +6,7 @@ import useSWR from "swr";
 import { useRouter } from "next/router";
 import Link from "next/link";
 import withAuth from "@/firebase/withAuth";
+import Loader from "@/components/Loader";
 
 const maxResult = 4;
 
@@ -17,7 +18,7 @@ const Category = ({ category, products, slug }) => {
     setPageIndex(1);
   }, [query]);
 
-  const { data } = useSWR(
+  const { data, error, isLoading } = useSWR(
     `/api/products?populate=*&[filters][categories][slug][$eq]=${slug}&pagination[page]=${pageIndex}&pagination[pageSize]=${maxResult}`,
     fetchDataFromApi,
     { fallbackData: products }
@@ -71,6 +72,7 @@ const Category = ({ category, products, slug }) => {
           </div>
         )}
         {/* PAGINATION BUTTONS END */}
+        {isLoading && <Loader />}
       </Wrapper>
     </div>
   );
