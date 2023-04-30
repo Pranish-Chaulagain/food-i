@@ -109,7 +109,7 @@ const Cart = () => {
       )}
 
       {cartItems.length < 1 && (
-        <div className="flex flex-col items-center h-[calc(100vh_-_116px)]">
+        <div className="flex flex-col items-center h-[calc(100vh_-_132px)]">
           <Image
             src="/empty-cart.jpg"
             alt=""

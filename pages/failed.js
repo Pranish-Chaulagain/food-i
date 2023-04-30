@@ -4,7 +4,7 @@ import Link from "next/link";
 
 const Failed = () => {
   return (
-    <div className="h-[calc(100vh_-_116px)] flex">
+    <div className="h-[calc(100vh_-_132px)] flex">
       <Wrapper>
         <div className="mt-[25vh] max-w-[600px] rounded-lg p-5 border border-black mx-auto flex flex-col">
           <div className="md:text-2xl text-xl font-bold">Payment failed!</div>

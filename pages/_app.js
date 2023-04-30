@@ -9,6 +9,7 @@ import store from "@/store/store";
 import "@/styles/globals.css";
 import NewsLetter from "@/components/NewsLetter";
 import { AuthUserProvider } from "@/firebase/auth";
+import Top from "@/components/Top";
 
 export default function App({ Component, pageProps }) {
   const [loading, setLoading] = useState(false);
@@ -20,6 +21,8 @@ export default function App({ Component, pageProps }) {
   const router = useRouter();
   const { asPath } = router;
   const noNav = ["/login", "/register"];
+
+  const noNewsLetter = ["/cart", "/failed", "/success"];
 
   return (
     <>
@@ -44,9 +47,10 @@ export default function App({ Component, pageProps }) {
           <Loader />
         ) : (
           <Provider store={store}>
+            {noNav.includes(asPath) ? null : <Top />}
             {noNav.includes(asPath) ? null : <Header />}
             <Component {...pageProps} />
-            {noNav.includes(asPath) ? null : <NewsLetter />}
+            {noNav && noNewsLetter.includes(asPath) ? null : <NewsLetter />}
             {noNav.includes(asPath) ? null : <Footer />}
           </Provider>
         )}
